@@ -1,0 +1,33 @@
+{
+  "timeout": "20000ms",
+  "size": 0,
+  "aggs": {
+    "0": {
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "@timestamp": {
+                  "from": 1681826700000,
+                  "to": 1681826820000
+                }
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "query_string": {
+                      "query": "port:(7680 OR 25) AND NOT c-ip:/74\\.59\\..*\\.<10-200>/"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
